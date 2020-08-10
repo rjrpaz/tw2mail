@@ -1,0 +1,8 @@
+[DEFAULT]
+NEWS = "News from Twitter: "
+TECHNOLOGY = "Tech news: "
+
+[NEWS]
+infobae = 0
+
+[TECHNOLOGY]
