@@ -24,7 +24,7 @@ def run():
         tweets = get_tweets(api, user.tag, user.last_id)
         for tweet in tweets:
             logger.info(f"Tweet: {tweet.text}")
-            telegram.send_message(user.tag, user.channel_id, tweet.text)
+            telegram.send_message(user.tag, user.channel_id, tweet)
             if tweet.id > max_id:
                 max_id = tweet.id
 
