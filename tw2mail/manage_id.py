@@ -4,6 +4,7 @@ import configparser
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger()
+logger.disabled = True
 
 config_ini = 'config.ini'
 
@@ -38,8 +39,7 @@ def get_user_stored_id(screen_name):
     config.read(config_ini)
 
     if screen_name in config:
-        last_id = config.read[screen_name, 'last_id']
-        print(f"ENTRE {last_id}")
+        last_id = config.getint(screen_name, 'last_id')
     else:
         print("NO ANDA")
     del config
