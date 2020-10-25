@@ -17,5 +17,5 @@ def send_message(tag, channel_id, tweet: Tweet):
 	config.read(config_ini)
 
 	link = 'https://twitter.com/' + tag + '/status/' + str(tweet.id)
-	message = '\n'.join([link, tweet.text])
+	message = '\n'.join([tag, link, tweet.text])
 	requests.get(f'https://api.telegram.org/bot{config["DEFAULT"]["bot_token"]}/sendMessage?chat_id={channel_id}&text={message}')
