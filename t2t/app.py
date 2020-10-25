@@ -16,9 +16,9 @@ def run():
     for user in tw_users:
         logger.info(f"Stored ID for user {user.tag} is {user.last_id}")
 
-        if user.last_id == 0:
-            last_id = get_last_tweet(api, user)
-            user.store_id(last_id)
+        if int(user.last_id) == 0:
+            user.last_id = get_last_tweet(api, user.tag)
+            user.store_id(user.last_id)
 
         max_id = 0
         tweets = get_tweets(api, user.tag, user.last_id)

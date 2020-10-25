@@ -16,8 +16,7 @@ class Tweet:
 def get_last_tweet(api, screen_name):
     logger.info(f"Retrieving last tweet from user {screen_name}")
     tweet = api.user_timeline(screen_name=screen_name, page=1)[0]
-
-    return tweet.id
+    return (tweet.id - 1)
 
 def get_tweets(api, screen_name, since_id):
     logger.info(f"Retrieving user {screen_name} timeline")
