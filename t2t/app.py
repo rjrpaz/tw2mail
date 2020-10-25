@@ -1,7 +1,8 @@
-from t2t.manage_id import get_sections, get_user_stored_id, store_user_id
-from t2t.twitter import get_last_tweet, get_user_timeline
+from t2t.manage_id import list_tw_users
+from t2t.twitter import get_last_tweet, get_tweets
 from t2t.config import create_api
 import logging
+from t2t import telegram
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger()
@@ -11,25 +12,27 @@ logger.disabled = True
 def run():
     api = create_api()
 
-    tw_users = get_sections()
+    tw_users = list_tw_users()
     for user in tw_users:
-        last_id = get_user_stored_id (user)
-        logger.info(f"Stored ID for user {user} is {last_id}")
+        logger.info(f"Stored ID for user {user.tag} is {user.last_id}")
 
-        if last_id == 0:
+        if user.last_id == 0:
             last_id = get_last_tweet(api, user)
-            store_user_id(user, last_id)
+            user.store_id(last_id)
 
-        Tweet_info = get_user_timeline(api, user, last_id)
-        if last_id != Tweet_info.max_id:
-            logger.info("Latest tweets:")
-#            for tweet in Tweet_info.tweets:
-#                print(tweet)
-        
-            store_user_id(user, Tweet_info.max_id)
-            logger.info(f"New ID for user {user} is {Tweet_info.max_id}")
+        max_id = 0
+        tweets = get_tweets(api, user.tag, user.last_id)
+        for tweet in tweets:
+            logger.info(f"Tweet: {tweet.text}")
+            telegram.send_message(user.tag, user.channel_id, tweet.text)
+            if tweet.id > max_id:
+                max_id = tweet.id
+
+        if int(user.last_id) < max_id:
+            user.store_id(max_id)
+            logger.info(f"New ID for user {user.tag} is {max_id}")
         else:
-            logger.info(f"No new tweets for user {user}")
+            logger.info(f"No new tweets for user {user.tag}")
 
 if __name__ == '__main__':
     run()

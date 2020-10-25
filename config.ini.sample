@@ -1,8 +1,14 @@
 [DEFAULT]
-NEWS = "News from Twitter: "
-TECHNOLOGY = "Tech news: "
+bot_token = PUT_YOUR_TELEGRAM_TOKEN_HERE
+consumer_key = PUT_YOUR_CONSUMER_KEY_HERE
+consumer_secret = PUT_YOUR_CONSUMER_SECRET_HERE
+access_token = PUT_YOUR_ACCESS_TOKEN_HERE
+access_token_secret = PUT_YOUR_ACCESS_TOKEN_SECRET_HERE
 
-[NEWS]
-infobae = 0
+[CHANNELS]
+news = id_for_telegram_channel
 
-[TECHNOLOGY]
+[infobae]
+last_id = 1320348776662500101
+channel_id = ${CHANNELS:new}
+
