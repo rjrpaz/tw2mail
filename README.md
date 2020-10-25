@@ -14,7 +14,7 @@ This is my main reference to use the Twitter API:
 
 Follow that guideline to get your Twitter API keys.
 
-This project requires the keys to be stored in file **tw2mail/local_settings.py**. This is a sample content for the file:
+This project requires the keys to be stored in file **t2t/local_settings.py**. This is a sample content for the file:
 
 ```console
 mail = 'email_address@domain.com'

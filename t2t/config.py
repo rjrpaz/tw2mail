@@ -3,7 +3,7 @@ import tweepy
 import logging
 import configparser
 import os
-from tw2mail.local_settings import consumer_key, consumer_secret, access_token, access_token_secret
+from t2t.local_settings import consumer_key, consumer_secret, access_token, access_token_secret
 
 logger = logging.getLogger()
 

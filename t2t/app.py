@@ -1,6 +1,6 @@
-from tw2mail.manage_id import get_sections, get_user_stored_id, store_user_id
-from tw2mail.twitter import get_last_tweet, get_user_timeline
-from tw2mail.config import create_api
+from t2t.manage_id import get_sections, get_user_stored_id, store_user_id
+from t2t.twitter import get_last_tweet, get_user_timeline
+from t2t.config import create_api
 import logging
 
 logging.basicConfig(level=logging.INFO)

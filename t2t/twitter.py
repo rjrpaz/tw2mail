@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 import tweepy
 import logging
-from tw2mail.config import create_api
-from tw2mail.manage_id import get_sections, get_user_stored_id
+from t2t.config import create_api
+from t2t.manage_id import get_sections, get_user_stored_id
 import time
 
 logging.basicConfig(level=logging.INFO)
